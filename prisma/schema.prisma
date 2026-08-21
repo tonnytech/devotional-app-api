@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+// generator client {
+//   provider = "prisma-client"
+//   output   = "../app/generated/prisma"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+// }
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// prisma/schema.prisma
+
+model ThemeVerse {
+  id        Int      @id @default(autoincrement())
+  verse     String
+  content   String
+  version   String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id        Int      @id @default(autoincrement())
+  name      String
+  eventDate DateTime
+  eventTime String
+  location  String
+  createdAt DateTime @default(now())
+}
+
+model Devotional {
+  id          Int                 @id @default(autoincrement())
+  title       String
+  month       String
+  year        Int
+  description String?
+  imageUrl    String?
+  isPaid      Boolean             @default(false)
+  isPublished Boolean             @default(false)
+  readings    DevotionalReading[]
+  createdAt   DateTime            @default(now())
+}
+
+model DevotionalReading {
+  id            Int               @id @default(autoincrement())
+  devotionalId  Int
+  devotional    Devotional        @relation(fields: [devotionalId], references: [id], onDelete: Cascade)
+  day           Int
+  title         String
+  scriptureRef  String
+  scriptureText String?
+  reflection    String?
+  prayer        String?
+  bibleReadings DailyReadingRef[]
+
+  @@unique([devotionalId, day])
+}
+
+model DailyReadingRef {
+  id                  Int               @id @default(autoincrement())
+  devotionalReadingId Int
+  devotionalReading   DevotionalReading @relation(fields: [devotionalReadingId], references: [id], onDelete: Cascade)
+  reference           String
+  isCompleted         Boolean           @default(false)
+}
+
+model Testimony {
+  id            Int      @id @default(autoincrement())
+  title         String?
+  testifier_name String   // <--- Here: snake_case
+  testifier_location String?
+  isApproved      Boolean  @default(false)
+  testimonyDate DateTime?
+  readTime      String?
+  category      String?
+  keyVerse      String?
+  content       String
+  likesCount    Int      @default(0)
+  createdAt     DateTime @default(now())
+}
+
+model Blog {
+  id         Int      @id @default(autoincrement())
+  title      String
+  snippet    String?
+  author     String
+  authorRole String?
+  blogDate   DateTime
+  readTime   String?
+  category   String?
+  imageUrl   String?
+  takeaways  Json?    @default("[]")
+  content    String
+  isPublished Boolean @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model Announcement {
+  id                Int      @id @default(autoincrement())
+  title             String
+  location          String?
+  announcementDate  DateTime
+  time              String?
+  category          String?
+  link              String?
+  description       String?
+  isImportant        Boolean?
+  createdAt         DateTime @default(now())
+}
+
+model PushToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    String?
+  createdAt DateTime @default(now())
+}
+
