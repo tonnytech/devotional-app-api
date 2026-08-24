@@ -49,18 +49,6 @@ export interface TestimonyItem {
   createdAt: Date | string;
 }
 
-// export interface Announcement {
-//   id: string;
-//   title: string;
-//   content: string;
-//   linkUrl: string | null;
-//   isImportant: boolean;
-//   isActive: boolean;
-//   expiresAt: Date | string | null;
-//   createdAt: Date | string;
-//   updatedAt: Date | string;
-// }
-
 export interface AnnouncementItem {
   id: number;
   title: string;

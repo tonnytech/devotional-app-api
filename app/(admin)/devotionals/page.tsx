@@ -90,7 +90,7 @@ export default async function DevotionalsPage() {
                     <td className='px-5 py-4'>
                       <div className='flex items-center justify-end gap-3'>
                         <Link
-                          href={`/devotionals/${d.id}`}
+                          href={`/devotionals/${d.id}/edit`}
                           className='text-[#7A4E14] hover:text-[#C9922F]'>
                           Edit
                         </Link>

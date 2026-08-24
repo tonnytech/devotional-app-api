@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BlogFormData } from "@/types";
+import ImageUploadField from "./ImageUploadField";
 
 interface BlogFormProps {
   initialData?: BlogFormData & { id?: number };
@@ -180,20 +181,13 @@ export default function BlogForm({
       </div>
 
       {/* Image URL & Snippet */}
-      <div>
-        <label className='block text-xs font-bold uppercase tracking-wider text-[#21262B] mb-2'>
-          Image URL
-        </label>
-        <input
-          type='url'
-          value={formData.imageUrl}
-          onChange={(e) =>
-            setFormData({ ...formData, imageUrl: e.target.value })
-          }
-          placeholder='https://example.com/cover.jpg'
-          className='w-full px-4 py-2.5 rounded-xl border border-[#E4DFD3] focus:border-[#C9922F] focus:outline-hidden text-sm'
-        />
-      </div>
+      {/* ADD this instead */}
+      <ImageUploadField
+        label='Cover Image'
+        value={formData.imageUrl}
+        onChange={(url) => setFormData({ ...formData, imageUrl: url })}
+        folder='church-cms/blogs'
+      />
 
       <div>
         <label className='block text-xs font-bold uppercase tracking-wider text-[#21262B] mb-2'>

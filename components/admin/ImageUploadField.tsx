@@ -1,26 +1,27 @@
-// src/components/forms/ImageUploadField.tsx
+// src/components/admin/ImageUploadField.tsx
 "use client";
 
 import { useState } from "react";
 
-type ImageUploadFieldProps = {
-  name: string;
-  label?: string;
-  defaultValue?: string;
+interface ImageUploadFieldProps {
+  label: string;
+  value: string;
+  onChange: (url: string) => void;
   folder?: string;
-};
+  required?: boolean;
+}
 
 export default function ImageUploadField({
-  name,
-  label = "Image",
-  defaultValue,
+  label,
+  value,
+  onChange,
   folder = "church-cms",
+  required = false,
 }: ImageUploadFieldProps) {
-  const [imageUrl, setImageUrl] = useState(defaultValue ?? "");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -34,6 +35,7 @@ export default function ImageUploadField({
         body: JSON.stringify({ folder }),
       });
       if (!signRes.ok) throw new Error("Could not get upload signature");
+
       const {
         signature,
         timestamp,
@@ -56,31 +58,36 @@ export default function ImageUploadField({
       if (!uploadRes.ok) throw new Error("Upload failed");
 
       const data = await uploadRes.json();
-      setImageUrl(data.secure_url);
+      onChange(data.secure_url);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Upload failed");
+      console.error("Cloudinary upload error:", err);
+      setError("Upload failed. Please try again.");
     } finally {
       setUploading(false);
     }
-  }
+  };
 
   return (
     <div>
-      <label className='block text-sm font-medium mb-1 text-[#21262B]'>
-        {label}
+      <label className='block text-xs font-bold uppercase tracking-wider text-[#21262B] mb-2'>
+        {label} {required && "*"}
       </label>
 
-      <input type='hidden' name={name} value={imageUrl} />
-
-      {imageUrl && (
-        <div className='mb-3 overflow-hidden rounded-lg border border-[#E4DFD3]'>
+      {value && (
+        <div className='mb-3 relative w-full h-40 rounded-xl overflow-hidden border border-[#E4DFD3]'>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imageUrl} alt='' className='h-40 w-full object-cover' />
+          <img src={value} alt='' className='w-full h-full object-cover' />
+          <button
+            type='button'
+            onClick={() => onChange("")}
+            className='absolute top-2 right-2 px-2 py-1 rounded-lg bg-white/90 text-xs font-semibold text-red-600 hover:bg-white'>
+            Remove
+          </button>
         </div>
       )}
 
-      <label className='flex cursor-pointer items-center justify-center rounded-md border border-dashed border-[#E4DFD3] px-4 py-3 text-sm text-[#7A4E14] hover:border-[#C9922F] hover:bg-[#C9922F]/5'>
-        {uploading ? "Uploading…" : imageUrl ? "Replace image" : "Upload image"}
+      <label className='flex items-center justify-center px-4 py-2.5 rounded-xl border border-dashed border-[#E4DFD3] text-xs font-semibold text-[#7A4E14] hover:border-[#C9922F] hover:bg-[#C9922F]/5 cursor-pointer transition-all'>
+        {uploading ? "Uploading..." : value ? "Replace image" : "Upload image"}
         <input
           type='file'
           accept='image/*'
@@ -90,7 +97,7 @@ export default function ImageUploadField({
         />
       </label>
 
-      {error && <p className='mt-1 text-xs text-red-600'>{error}</p>}
+      {error && <p className='mt-1.5 text-xs text-red-600'>{error}</p>}
     </div>
   );
 }
