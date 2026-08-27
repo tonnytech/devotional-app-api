@@ -14,7 +14,7 @@ interface AnnouncementFormProps {
 const CATEGORIES = [
   "General",
   "Evangelism",
-  "Weddings",
+  "Wedding",
   "community service",
   "Ministry Update",
 ];
