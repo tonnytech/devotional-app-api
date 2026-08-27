@@ -1,3 +1,4 @@
+// app/(admin)/events/[id]/edit/page.tsx
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import EventForm from "@/components/admin/EventForm";
@@ -33,10 +34,14 @@ export default async function EditEventPage({ params }: EditEventPageProps) {
 
       <EventForm
         initialData={{
-          name: event.name,
+          title: event.title,
+          description: event.description ?? undefined,
           eventDate: event.eventDate.toISOString().split("T")[0],
           eventTime: event.eventTime,
           location: event.location,
+          imageUrl: event.imageUrl ?? undefined,
+          registrationUrl: event.registrationUrl ?? undefined,
+          isFeatured: event.isFeatured,
         }}
         onSubmit={handleUpdate}
         buttonText='Save Changes'

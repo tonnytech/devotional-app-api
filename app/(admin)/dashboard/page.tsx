@@ -1,19 +1,34 @@
-// src/app/(admin)/dashboard/page.tsx
+// app/(admin)/dashboard/page.tsx
 import { prisma } from "@/lib/prisma";
 import Header from "@/components/admin/Header";
 
 export const dynamic = "force-dynamic";
 
 async function getStats() {
-  const [devotionals, blogs, testimonies, announcements, pendingTestimonies] =
-    await Promise.all([
-      prisma.devotional.count(),
-      prisma.blog.count(),
-      prisma.testimony.count(),
-      prisma.announcement.count(),
-      prisma.testimony.count({ where: { isApproved: false } }),
-    ]);
-  return { devotionals, blogs, testimonies, announcements, pendingTestimonies };
+  const [
+    devotionals,
+    blogs,
+    testimonies,
+    announcements,
+    events,
+    pendingTestimonies,
+  ] = await Promise.all([
+    prisma.devotional.count(),
+    prisma.blog.count(),
+    prisma.testimony.count(),
+    prisma.announcement.count(),
+    prisma.event.count(),
+    prisma.testimony.count({ where: { isApproved: false } }),
+  ]);
+
+  return {
+    devotionals,
+    blogs,
+    testimonies,
+    announcements,
+    events,
+    pendingTestimonies,
+  };
 }
 
 export default async function DashboardPage() {
@@ -24,6 +39,7 @@ export default async function DashboardPage() {
     { label: "Blog posts", value: stats.blogs },
     { label: "Testimonies", value: stats.testimonies },
     { label: "Announcements", value: stats.announcements },
+    { label: "Services", value: stats.events },
   ];
 
   return (
@@ -38,7 +54,7 @@ export default async function DashboardPage() {
           </div>
         )}
 
-        <div className='grid grid-cols-2 gap-4 md:grid-cols-4'>
+        <div className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5'>
           {cards.map((card) => (
             <div
               key={card.label}

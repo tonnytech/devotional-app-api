@@ -1,12 +1,8 @@
+// app/(admin)/events/new/page.tsx
 import EventForm from "@/components/admin/EventForm";
-import { createEvent, EventFormData } from "../actions";
+import { createEvent } from "../actions";
 
 export default function NewEventPage() {
-  const handleCreate = async (data: EventFormData) => {
-    "use server";
-    await createEvent(data);
-  };
-
   return (
     <div className='p-6 md:p-8 max-w-4xl mx-auto space-y-6'>
       <div className='border-b border-[#E4DFD3] pb-4'>
@@ -16,7 +12,7 @@ export default function NewEventPage() {
           Create New Event
         </h1>
       </div>
-      <EventForm onSubmit={handleCreate} buttonText='Create Event' />
+      <EventForm onSubmit={createEvent} buttonText='Create Event' />
     </div>
   );
 }
