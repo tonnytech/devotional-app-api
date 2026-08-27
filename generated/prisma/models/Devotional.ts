@@ -452,10 +452,6 @@ export type DevotionalScalarRelationFilter = {
   isNot?: Prisma.DevotionalWhereInput
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type DevotionalCreateNestedOneWithoutReadingsInput = {
   create?: Prisma.XOR<Prisma.DevotionalCreateWithoutReadingsInput, Prisma.DevotionalUncheckedCreateWithoutReadingsInput>
   connectOrCreate?: Prisma.DevotionalCreateOrConnectWithoutReadingsInput

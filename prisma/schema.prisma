@@ -33,12 +33,18 @@ model ThemeVerse {
 }
 
 model Event {
-  id        Int      @id @default(autoincrement())
-  name      String
-  eventDate DateTime
-  eventTime String
-  location  String
-  createdAt DateTime @default(now())
+  id              Int      @id @default(autoincrement())
+  title           String
+  slug            String?   @unique
+  description     String?  @db.Text
+  location        String
+  eventDate       DateTime
+  eventTime       String   // e.g. "10:00 AM - 1:00 PM"
+  imageUrl        String?
+  registrationUrl String?
+  isFeatured      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Devotional {

@@ -1144,11 +1144,17 @@ export type ThemeVerseScalarFieldEnum = (typeof ThemeVerseScalarFieldEnum)[keyof
 
 export const EventScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  location: 'location',
   eventDate: 'eventDate',
   eventTime: 'eventTime',
-  location: 'location',
-  createdAt: 'createdAt'
+  imageUrl: 'imageUrl',
+  registrationUrl: 'registrationUrl',
+  isFeatured: 'isFeatured',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
