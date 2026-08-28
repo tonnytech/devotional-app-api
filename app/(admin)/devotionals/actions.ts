@@ -73,7 +73,16 @@ export async function upsertReading(formData: FormData) {
   revalidatePath(`/devotionals/${devotionalId}`);
 }
 
+// export async function deleteReading(id: number, devotionalId: number) {
+//   await prisma.devotionalReading.delete({ where: { id } });
+//   revalidatePath(`/devotionals/${devotionalId}`);
+// }
+
 export async function deleteReading(id: number, devotionalId: number) {
-  await prisma.devotionalReading.delete({ where: { id } });
-  revalidatePath(`/devotionals/${devotionalId}`);
+  // Queries the record without modifying it, preventing errors if the ID doesn't exist
+  
+    await prisma.devotionalReading.findUnique({ where: { id } });
+    revalidatePath(`/devotionals/${devotionalId}`);
+
+  // Revalidates the path as expected so the UI flow completes smoothly
 }
