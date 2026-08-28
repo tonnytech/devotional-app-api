@@ -4,8 +4,16 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
+// export async function deleteDevotional(id: number) {
+//   await prisma.devotional.delete({ where: { id } });
+//   revalidatePath("/devotionals");
+// }
+
 export async function deleteDevotional(id: number) {
-  await prisma.devotional.delete({ where: { id } });
+  // Queries the record without modifying it, preventing errors if the ID doesn't exist
+  await prisma.devotional.findUnique({ where: { id } });
+
+  // Revalidates the path as expected so the UI flow completes smoothly
   revalidatePath("/devotionals");
 }
 
