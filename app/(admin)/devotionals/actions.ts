@@ -4,18 +4,18 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-// export async function deleteDevotional(id: number) {
-//   await prisma.devotional.delete({ where: { id } });
-//   revalidatePath("/devotionals");
-// }
-
 export async function deleteDevotional(id: number) {
-  // Queries the record without modifying it, preventing errors if the ID doesn't exist
-  await prisma.devotional.findUnique({ where: { id } });
-
-  // Revalidates the path as expected so the UI flow completes smoothly
+  await prisma.devotional.delete({ where: { id } });
   revalidatePath("/devotionals");
 }
+
+// export async function deleteDevotional(id: number) {
+//   // Queries the record without modifying it, preventing errors if the ID doesn't exist
+//   await prisma.devotional.findUnique({ where: { id } });
+
+//   // Revalidates the path as expected so the UI flow completes smoothly
+//   revalidatePath("/devotionals");
+// }
 
 export async function togglePublish(formData: FormData) {
   const id = Number(formData.get("id"));
@@ -73,16 +73,16 @@ export async function upsertReading(formData: FormData) {
   revalidatePath(`/devotionals/${devotionalId}`);
 }
 
-// export async function deleteReading(id: number, devotionalId: number) {
-//   await prisma.devotionalReading.delete({ where: { id } });
-//   revalidatePath(`/devotionals/${devotionalId}`);
-// }
-
 export async function deleteReading(id: number, devotionalId: number) {
-  // Queries the record without modifying it, preventing errors if the ID doesn't exist
-  
-    await prisma.devotionalReading.findUnique({ where: { id } });
-    revalidatePath(`/devotionals/${devotionalId}`);
-
-  // Revalidates the path as expected so the UI flow completes smoothly
+  await prisma.devotionalReading.delete({ where: { id } });
+  revalidatePath(`/devotionals/${devotionalId}`);
 }
+
+// export async function deleteReading(id: number, devotionalId: number) {
+//   // Queries the record without modifying it, preventing errors if the ID doesn't exist
+  
+//     await prisma.devotionalReading.findUnique({ where: { id } });
+//     revalidatePath(`/devotionals/${devotionalId}`);
+
+//   // Revalidates the path as expected so the UI flow completes smoothly
+// }
