@@ -62,3 +62,18 @@ export type Announcement = Prisma.AnnouncementModel
  * 
  */
 export type PushToken = Prisma.PushTokenModel
+/**
+ * Model Book
+ * 
+ */
+export type Book = Prisma.BookModel
+/**
+ * Model BookReview
+ * 
+ */
+export type BookReview = Prisma.BookReviewModel
+/**
+ * Model CalendarEvent
+ * 
+ */
+export type CalendarEvent = Prisma.CalendarEventModel

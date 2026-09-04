@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.9.1
- * Query Engine version: e922089b7d7502aff4249d5da3420f6fa55fc6ad
+ * Prisma Client JS version: 7.10.0
+ * Query Engine version: 0edf323efd1d98336f3f0a68684b56f689b900d3
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.9.1",
-  engine: "e922089b7d7502aff4249d5da3420f6fa55fc6ad"
+  client: "7.10.0",
+  engine: "0edf323efd1d98336f3f0a68684b56f689b900d3"
 }
 
 /**
@@ -405,7 +405,10 @@ export const ModelName = {
   Testimony: 'Testimony',
   Blog: 'Blog',
   Announcement: 'Announcement',
-  PushToken: 'PushToken'
+  PushToken: 'PushToken',
+  Book: 'Book',
+  BookReview: 'BookReview',
+  CalendarEvent: 'CalendarEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "themeVerse" | "event" | "devotional" | "devotionalReading" | "dailyReadingRef" | "testimony" | "blog" | "announcement" | "pushToken"
+    modelProps: "themeVerse" | "event" | "devotional" | "devotionalReading" | "dailyReadingRef" | "testimony" | "blog" | "announcement" | "pushToken" | "book" | "bookReview" | "calendarEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1091,6 +1094,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Book: {
+      payload: Prisma.$BookPayload<ExtArgs>
+      fields: Prisma.BookFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BookFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BookFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>
+        }
+        findFirst: {
+          args: Prisma.BookFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BookFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>
+        }
+        findMany: {
+          args: Prisma.BookFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>[]
+        }
+        create: {
+          args: Prisma.BookCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>
+        }
+        createMany: {
+          args: Prisma.BookCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BookCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>[]
+        }
+        delete: {
+          args: Prisma.BookDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>
+        }
+        update: {
+          args: Prisma.BookUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>
+        }
+        deleteMany: {
+          args: Prisma.BookDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BookUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BookUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>[]
+        }
+        upsert: {
+          args: Prisma.BookUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>
+        }
+        aggregate: {
+          args: Prisma.BookAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBook>
+        }
+        groupBy: {
+          args: Prisma.BookGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BookCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookCountAggregateOutputType> | number
+        }
+      }
+    }
+    BookReview: {
+      payload: Prisma.$BookReviewPayload<ExtArgs>
+      fields: Prisma.BookReviewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BookReviewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BookReviewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>
+        }
+        findFirst: {
+          args: Prisma.BookReviewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BookReviewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>
+        }
+        findMany: {
+          args: Prisma.BookReviewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>[]
+        }
+        create: {
+          args: Prisma.BookReviewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>
+        }
+        createMany: {
+          args: Prisma.BookReviewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BookReviewCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>[]
+        }
+        delete: {
+          args: Prisma.BookReviewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>
+        }
+        update: {
+          args: Prisma.BookReviewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>
+        }
+        deleteMany: {
+          args: Prisma.BookReviewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BookReviewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BookReviewUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>[]
+        }
+        upsert: {
+          args: Prisma.BookReviewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookReviewPayload>
+        }
+        aggregate: {
+          args: Prisma.BookReviewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBookReview>
+        }
+        groupBy: {
+          args: Prisma.BookReviewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookReviewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BookReviewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookReviewCountAggregateOutputType> | number
+        }
+      }
+    }
+    CalendarEvent: {
+      payload: Prisma.$CalendarEventPayload<ExtArgs>
+      fields: Prisma.CalendarEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CalendarEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CalendarEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+        }
+        findFirst: {
+          args: Prisma.CalendarEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CalendarEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+        }
+        findMany: {
+          args: Prisma.CalendarEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>[]
+        }
+        create: {
+          args: Prisma.CalendarEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+        }
+        createMany: {
+          args: Prisma.CalendarEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CalendarEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>[]
+        }
+        delete: {
+          args: Prisma.CalendarEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+        }
+        update: {
+          args: Prisma.CalendarEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.CalendarEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CalendarEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CalendarEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.CalendarEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+        }
+        aggregate: {
+          args: Prisma.CalendarEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCalendarEvent>
+        }
+        groupBy: {
+          args: Prisma.CalendarEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CalendarEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CalendarEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CalendarEventCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1260,6 +1485,65 @@ export const PushTokenScalarFieldEnum = {
 } as const
 
 export type PushTokenScalarFieldEnum = (typeof PushTokenScalarFieldEnum)[keyof typeof PushTokenScalarFieldEnum]
+
+
+export const BookScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  author: 'author',
+  description: 'description',
+  coverImageUrl: 'coverImageUrl',
+  category: 'category',
+  isbn: 'isbn',
+  isPublished: 'isPublished',
+  purchaseUrl: 'purchaseUrl',
+  howToBuy: 'howToBuy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
+export const BookReviewScalarFieldEnum = {
+  id: 'id',
+  bookId: 'bookId',
+  reviewerName: 'reviewerName',
+  reviewerLocation: 'reviewerLocation',
+  rating: 'rating',
+  title: 'title',
+  content: 'content',
+  isApproved: 'isApproved',
+  likesCount: 'likesCount',
+  createdAt: 'createdAt'
+} as const
+
+export type BookReviewScalarFieldEnum = (typeof BookReviewScalarFieldEnum)[keyof typeof BookReviewScalarFieldEnum]
+
+
+export const CalendarEventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  location: 'location',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  allDay: 'allDay',
+  eventTime: 'eventTime',
+  category: 'category',
+  color: 'color',
+  imageUrl: 'imageUrl',
+  registrationUrl: 'registrationUrl',
+  isFeatured: 'isFeatured',
+  isRecurring: 'isRecurring',
+  recurrenceRule: 'recurrenceRule',
+  recurrenceEndDate: 'recurrenceEndDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CalendarEventScalarFieldEnum = (typeof CalendarEventScalarFieldEnum)[keyof typeof CalendarEventScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1545,6 +1829,9 @@ export type GlobalOmitConfig = {
   blog?: Prisma.BlogOmit
   announcement?: Prisma.AnnouncementOmit
   pushToken?: Prisma.PushTokenOmit
+  book?: Prisma.BookOmit
+  bookReview?: Prisma.BookReviewOmit
+  calendarEvent?: Prisma.CalendarEventOmit
 }
 
 /* Types for Logging */

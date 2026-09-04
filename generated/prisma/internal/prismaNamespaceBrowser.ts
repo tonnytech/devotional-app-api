@@ -59,7 +59,10 @@ export const ModelName = {
   Testimony: 'Testimony',
   Blog: 'Blog',
   Announcement: 'Announcement',
-  PushToken: 'PushToken'
+  PushToken: 'PushToken',
+  Book: 'Book',
+  BookReview: 'BookReview',
+  CalendarEvent: 'CalendarEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -208,6 +211,65 @@ export const PushTokenScalarFieldEnum = {
 } as const
 
 export type PushTokenScalarFieldEnum = (typeof PushTokenScalarFieldEnum)[keyof typeof PushTokenScalarFieldEnum]
+
+
+export const BookScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  author: 'author',
+  description: 'description',
+  coverImageUrl: 'coverImageUrl',
+  category: 'category',
+  isbn: 'isbn',
+  isPublished: 'isPublished',
+  purchaseUrl: 'purchaseUrl',
+  howToBuy: 'howToBuy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
+export const BookReviewScalarFieldEnum = {
+  id: 'id',
+  bookId: 'bookId',
+  reviewerName: 'reviewerName',
+  reviewerLocation: 'reviewerLocation',
+  rating: 'rating',
+  title: 'title',
+  content: 'content',
+  isApproved: 'isApproved',
+  likesCount: 'likesCount',
+  createdAt: 'createdAt'
+} as const
+
+export type BookReviewScalarFieldEnum = (typeof BookReviewScalarFieldEnum)[keyof typeof BookReviewScalarFieldEnum]
+
+
+export const CalendarEventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  location: 'location',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  allDay: 'allDay',
+  eventTime: 'eventTime',
+  category: 'category',
+  color: 'color',
+  imageUrl: 'imageUrl',
+  registrationUrl: 'registrationUrl',
+  isFeatured: 'isFeatured',
+  isRecurring: 'isRecurring',
+  recurrenceRule: 'recurrenceRule',
+  recurrenceEndDate: 'recurrenceEndDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CalendarEventScalarFieldEnum = (typeof CalendarEventScalarFieldEnum)[keyof typeof CalendarEventScalarFieldEnum]
 
 
 export const SortOrder = {
