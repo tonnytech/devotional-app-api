@@ -112,6 +112,23 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
           <line x1='3' y1='10' x2='21' y2='10' />
         </svg>
       );
+    case "library":
+      return (
+        <svg {...common}>
+          <path d='M4 19V5a2 2 0 0 1 2-2h2v18H6a2 2 0 0 1-2-2Z' />
+          <path d='M12 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4V3Z' />
+          <path d='M8 7h0M8 11h0M8 15h0' />
+        </svg>
+      );
+    case "church":
+      return (
+        <svg {...common}>
+          <path d='M12 2v4M9 8l3-2 3 2' />
+          <path d='M4 22V12l8-6 8 6v10' />
+          <path d='M9 22v-6a3 3 0 0 1 6 0v6' />
+          <path d='M4 22h16' />
+        </svg>
+      );
     default:
       return null;
   }

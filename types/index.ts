@@ -1,5 +1,45 @@
 // types/index.ts
 
+export interface CalendarEventItem {
+  id: number;
+  title: string;
+  slug: string | null;
+  description: string | null;
+  location: string | null;
+  startDate: Date | string;
+  endDate: Date | string | null;
+  allDay: boolean;
+  eventTime: string | null;
+  category: string | null;
+  color: string | null;
+  imageUrl: string | null;
+  registrationUrl: string | null;
+  isFeatured: boolean;
+  isRecurring: boolean;
+  recurrenceRule: string | null;
+  recurrenceEndDate: Date | string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export type CalendarEventFormData = {
+  title: string;
+  description?: string | null;
+  location?: string | null;
+  startDate: string; // "YYYY-MM-DD" string for HTML date inputs
+  endDate?: string | null;
+  allDay?: boolean;
+  eventTime?: string | null;
+  category?: string | null;
+  color?: string | null;
+  imageUrl?: string | null;
+  registrationUrl?: string | null;
+  isFeatured?: boolean;
+  isRecurring?: boolean;
+  recurrenceRule?: string | null;
+  recurrenceEndDate?: string | null; // "YYYY-MM-DD" string for HTML date inputs
+};
+
 export interface Devotional {
   id: number;
   title: string;
