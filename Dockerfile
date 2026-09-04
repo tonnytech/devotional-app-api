@@ -26,9 +26,10 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/generated ./generated
 
-# --- full node_modules, needed for prisma CLI + all its transitive deps at runtime ---
+# --- full node_modules + prisma schema/config, needed for migrate deploy at container start ---
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
