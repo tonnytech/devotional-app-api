@@ -4,8 +4,10 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
+
   try {
     const body = await req.json();
     const { reviewerName, reviewerLocation, rating, title, content } = body;
@@ -26,7 +28,7 @@ export async function POST(
 
     const review = await prisma.bookReview.create({
       data: {
-        bookId: Number(params.id),
+        bookId: Number(id),
         reviewerName,
         reviewerLocation,
         rating,

@@ -5,11 +5,13 @@ import { Prisma } from "@/generated/prisma/client";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
+
   try {
     const review = await prisma.bookReview.update({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
       data: { likesCount: { increment: 1 } },
       select: { id: true, likesCount: true },
     });
